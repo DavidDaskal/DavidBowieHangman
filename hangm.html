@@ -24,123 +24,9 @@
   Guess: <input name = "letter" type = "text" size = "20">
   </form>
 <br>
+
 <button onclick="storeguess()">Submit Guess</button>
 
-  <script type="text/javascript">
-  var gs="";
-
-  function storeguess() {
-  g=document.getElementById("guess");
-  gs=g.elements["letter"].value;
-  gs=gs.toUpperCase();
-  checkguess(gs);
-
-	}
-
-
-  bowie = ["ASHESTOASHES","LETSDANCE","LIFEONMARS","STARMAN","ZIGGYSTARDUST","WILDISTHEWIND","HEROES","SPACEODDITY"];
-  
-  songNum = Math.floor((Math.random() * (bowie.length)) + 0)
-  
-  song = bowie[songNum];
-
-
-
-  wrongAnswers=0;
-  currentguess = [];
-  for (t=0;t < song.length; t++) {
-  	currentguess.push("_");
-  }
-  
-  function checkguess(gss) {
-
-  	   if (wrongAnswers > 8) {
-	  		lostgame();
-	  }
-  	
-	  if (song.indexOf(gss) > -1) {
-	  	
-	  	for(t=0;t < song.length;t++) {
-	  		if (gss == song[t]) {
-	  		   currentguess[t] = gss;
-
-	  	   }
-	  	}
-	  
-	   		document.querySelector('#correctguess').innerHTML = "Good guess! Keep up the good work";
-
-	   		document.querySelector('#wrongguess').innerHTML = "";
-
-	  		document.querySelector('#current').innerHTML = currentguess.join(" ");
-
-	  	if (currentguess.indexOf("_") < 0) {
-	  		alert("Congratulations! Press OK and turn up your volume.")
-	  		wongame(songNum);
-	  	}
-	  	
-	  }
-
-	  	else {
-	  			wrongAnswers++;
-	  		  	document.querySelector('#wrongguess').innerHTML = "Sorry, you guessed a wrong letter. You have "+(10 - wrongAnswers) + " guess(es) remaining.";
-	  		  	document.querySelector('#correctguess').innerHTML = "";
-	  		  	document.querySelector('#current').innerHTML = currentguess.join(" ");
-
-	  	}
-	 
-  }
-
-  function wongame(music) {
-  		switch (music) {
-  			case 0: var aud = new Audio ("assets/media/ashestoashes.mp3");
-  			aud.play();
-  			break;
-
-  			case 1: var aud = new Audio ("assets/media/letsdance.mp3");
-  			aud.play();
-  			break;
-
-  			case 2: var aud = new Audio ("assets/media/lifeonmars.mp3");
-  			aud.play();
-  			break;
-
-  			case 3: var aud = new Audio ("assets/media/starman.mp3");
-  			aud.play();
-  			break;
-
-  			case 4: var aud = new Audio ("assets/media/ziggy.mp3");
-  			aud.play();
-  			break;
-
-  			case 5: var aud = new Audio ("assets/media/wildisthewind.mp3");
-  			aud.play();
-  			break;
-
-  			case 6: var aud = new Audio ("assets/media/heroes.mp3");
-  			aud.play();
-  			break;
-
-  			case 7: var aud = new Audio ("assets/media/spaceoddity.mp3");
-  			aud.play();
-  			break;
-
-  		}
-  
-
-  }
-
-  function lostgame() {
-   var r =confirm("Sorry, you lost. The good news is you can try infinite amount of times. Press OK to hear the song you couldn't guess and please try again");
-   if (r==true) {
-   	alert (song);
-   	wongame(songNum);
-   }
-   wrongAnswers = 9;
-   }
-
-  
-  
-  </script>
 <div class = "container">
 <p id="correctguess"></p>
 <br>
@@ -152,6 +38,128 @@
 	<img id ="back" src= "assets/media/bowieback.jpg"/>
 </div>
 </div>
+
+<script type="text/javascript">
+  var gs="";
+
+  function storeguess() {
+  g=document.getElementById("guess");
+  gs=g.elements["letter"].value;
+  gs=gs.toUpperCase();
+  checkguess(gs);
+
+  }
+
+
+  bowie = ["ASHES TO ASHES","LETS DANCE","LIFE ON MARS","STARMAN","ZIGGY STARDUST","WILD IS THE WIND","HEROES","SPACE ODDITY"];
+  
+  songNum = Math.floor((Math.random() * (bowie.length)) + 0)
+  song = bowie[songNum];
+
+
+
+  wrongAnswers=0;
+  currentguess = [];
+  for (t=0;t < song.length; t++) {
+    if (song[t]==" ") {
+      currentguess.push(" ");
+    }
+    else {
+    currentguess.push("_");
+    }
+  }
+  
+document.querySelector('#current').innerHTML = currentguess.join(" ");
+
+  function checkguess(gss) {
+
+       if (wrongAnswers > 8) {
+        lostgame();
+    }
+    
+    if (song.indexOf(gss) > -1) {
+      
+      for(t=0;t < song.length;t++) {
+        if (gss == song[t]) {
+           currentguess[t] = gss;
+
+         }
+      }
+    
+        document.querySelector('#correctguess').innerHTML = "Good guess! Keep up the good work";
+
+        document.querySelector('#wrongguess').innerHTML = "";
+
+        document.querySelector('#current').innerHTML = currentguess.join(" ");
+
+      if (currentguess.indexOf("_") < 0) {
+        alert("Congratulations! Press OK and turn up your volume.")
+        wongame(songNum);
+      }
+      
+    }
+
+      else {
+          wrongAnswers++;
+            document.querySelector('#wrongguess').innerHTML = "Sorry, you guessed a wrong letter. You have "+(10 - wrongAnswers) + " guess(es) remaining.";
+            document.querySelector('#correctguess').innerHTML = "";
+            document.querySelector('#current').innerHTML = currentguess.join(" ");
+
+      }
+   
+  }
+
+  function wongame(music) {
+      switch (music) {
+        case 0: var aud = new Audio ("assets/media/ashestoashes.mp3");
+        aud.play();
+        break;
+
+        case 1: var aud = new Audio ("assets/media/letsdance.mp3");
+        aud.play();
+        break;
+
+        case 2: var aud = new Audio ("assets/media/lifeonmars.mp3");
+        aud.play();
+        break;
+
+        case 3: var aud = new Audio ("assets/media/starman.mp3");
+        aud.play();
+        break;
+
+        case 4: var aud = new Audio ("assets/media/ziggy.mp3");
+        aud.play();
+        break;
+
+        case 5: var aud = new Audio ("assets/media/wildisthewind.mp3");
+        aud.play();
+        break;
+
+        case 6: var aud = new Audio ("assets/media/heroes.mp3");
+        aud.play();
+        break;
+
+        case 7: var aud = new Audio ("assets/media/spaceoddity.mp3");
+        aud.play();
+        break;
+
+      }
+  
+
+  }
+
+  function lostgame() {
+   var r =confirm("Sorry, you lost. The good news is you can try infinite amount of times. Press OK to hear the song you couldn't guess and please try again");
+   if (r==true) {
+    alert (song);
+    wongame(songNum);
+   }
+   wrongAnswers = 9;
+   }
+
+  
+  
+  </script>
 
 </body>
 <footer ><div class="container">
