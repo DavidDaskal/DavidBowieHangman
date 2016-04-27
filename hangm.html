@@ -12,6 +12,7 @@
    David Bowie Hangman. Guess the song by entering one letter at a time. Good Luck. 
 <img id="blackstarl"src = "assets/media/blackstar.jpg"/>
 <img id="blackstarr"src = "assets/media/blackstar.jpg"/>
+
  </header>
 </head>
 
@@ -33,15 +34,18 @@
 <p id="current"></p>
 <br>
 <p id="wrongguess"></p>
+<p id="lettersused"></p>
 <br>
 <div>
 	<img id ="back" src= "assets/media/bowieback.jpg"/>
 </div>
 </div>
 
+
+
 <script type="text/javascript">
   var gs="";
-
+  wrongletters = [];
   function storeguess() {
   g=document.getElementById("guess");
   gs=g.elements["letter"].value;
@@ -100,14 +104,21 @@ document.querySelector('#current').innerHTML = currentguess.join(" ");
     }
 
       else {
+          wrongletters.push(gss);
+          for (var i=0; i<wrongletters.length; i++) {
+              document.querySelector('#lettersused').innerHTML = wrongletters.join(" ");
+          }
           wrongAnswers++;
             document.querySelector('#wrongguess').innerHTML = "Sorry, you guessed a wrong letter. You have "+(10 - wrongAnswers) + " guess(es) remaining.";
             document.querySelector('#correctguess').innerHTML = "";
             document.querySelector('#current').innerHTML = currentguess.join(" ");
 
+
       }
    
   }
+
+
 
   function wongame(music) {
       switch (music) {
