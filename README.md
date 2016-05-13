@@ -1,5 +1,5 @@
-# hangman
+# David Bowie Hangman
 
-A tribute game of Hangman to the late David Bowie. This app is live at :
+A tribute to the late David Bowie. This app is live at :
 
 https://bowiehangman.herokuapp.com/
